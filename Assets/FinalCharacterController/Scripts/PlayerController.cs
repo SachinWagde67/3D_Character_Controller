@@ -22,6 +22,7 @@ namespace FinalCharacterController {
         [SerializeField] private float movingThreshold = 0.01f;
         [SerializeField] private float gravity = 25f;
         [SerializeField] private float jumpSpeed = 1.0f;
+        [SerializeField] private float playerRotationThreshold = 75f;
 
         [Header("Animation Settings")]
         [SerializeField] private float playerModelRotationSpeed = 10f;
@@ -133,7 +134,6 @@ namespace FinalCharacterController {
 
             playerTargetRotation.x += transform.eulerAngles.x + lookSensH * playerLocomotionInput.LookInput.x;
 
-            float rotationThreshold = 90f;
             bool isidling = playerState.CurrentPlayerMovementState == PlayerMovementState.Idling;
             IsRotatingToTarget = rotatingToTargetTimer > 0;
 
@@ -143,9 +143,9 @@ namespace FinalCharacterController {
                 RotatePlayerToTarget();
             }
             //If rotating mismatch not within threshold, or rotate to target is active, then ROTATE
-            else if(Mathf.Abs(RotationMismatch) > rotationThreshold || IsRotatingToTarget) {
+            else if(Mathf.Abs(RotationMismatch) > playerRotationThreshold || IsRotatingToTarget) {
 
-                UpdateIdleRotation(rotationThreshold);
+                UpdateIdleRotation(playerRotationThreshold);
             }
 
             playerCamera.transform.rotation = Quaternion.Euler(cameraRotation.y, cameraRotation.x, 0f);

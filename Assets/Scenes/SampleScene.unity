@@ -680,21 +680,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4999299263219007185, guid: 47553107afe63dc40a70ff173f358912,
         type: 3}
-      propertyPath: runSpeed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4999299263219007185, guid: 47553107afe63dc40a70ff173f358912,
-        type: 3}
-      propertyPath: walkSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4999299263219007185, guid: 47553107afe63dc40a70ff173f358912,
-        type: 3}
-      propertyPath: sprintSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4999299263219007185, guid: 47553107afe63dc40a70ff173f358912,
-        type: 3}
       propertyPath: _playerCamera
       value: 
       objectReference: {fileID: 1542245416}

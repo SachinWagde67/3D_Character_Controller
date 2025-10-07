@@ -6360,6 +6360,7 @@ MonoBehaviour:
   movingThreshold: 0.01
   gravity: 25
   jumpSpeed: 1
+  playerRotationThreshold: 60
   playerModelRotationSpeed: 10
   rotateToTargetTime: 0.68
   lookSensH: 0.1
@@ -6378,6 +6379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdToSprint: 1
+  holdToWalk: 1
 --- !u!114 &5376857449494534111
 MonoBehaviour:
   m_ObjectHideFlags: 0
