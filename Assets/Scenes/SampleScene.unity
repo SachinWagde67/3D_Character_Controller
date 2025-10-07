@@ -609,6 +609,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!143 &748845440 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 1090704481526662284, guid: 47553107afe63dc40a70ff173f358912,
+    type: 3}
+  m_PrefabInstance: {fileID: 3462003288004897689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,6 +664,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1542245416 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7012288383507102161, guid: 47553107afe63dc40a70ff173f358912,
+    type: 3}
+  m_PrefabInstance: {fileID: 3462003288004897689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3462003288004897689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -666,6 +678,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4999299263219007185, guid: 47553107afe63dc40a70ff173f358912,
+        type: 3}
+      propertyPath: runSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999299263219007185, guid: 47553107afe63dc40a70ff173f358912,
+        type: 3}
+      propertyPath: walkSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999299263219007185, guid: 47553107afe63dc40a70ff173f358912,
+        type: 3}
+      propertyPath: sprintSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999299263219007185, guid: 47553107afe63dc40a70ff173f358912,
+        type: 3}
+      propertyPath: _playerCamera
+      value: 
+      objectReference: {fileID: 1542245416}
+    - target: {fileID: 4999299263219007185, guid: 47553107afe63dc40a70ff173f358912,
+        type: 3}
+      propertyPath: _characterController
+      value: 
+      objectReference: {fileID: 748845440}
     - target: {fileID: 7251684096009199533, guid: 47553107afe63dc40a70ff173f358912,
         type: 3}
       propertyPath: m_LocalPosition.x

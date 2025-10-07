@@ -6333,7 +6333,7 @@ CharacterController:
   m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.00001
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &4999299263219007185
@@ -6350,14 +6350,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 1090704481526662284}
   playerCamera: {fileID: 7012288383507102161}
+  walkAcceleration: 25
+  walkSpeed: 2
   runAcceleration: 35
-  runSpeed: 4
+  runSpeed: 6
   sprintAcceleration: 50
-  sprintSpeed: 7
-  drag: 15
+  sprintSpeed: 10
+  drag: 20
   movingThreshold: 0.01
-  lookSensH: 0.15
-  lookSensV: 0.15
+  gravity: 25
+  jumpSpeed: 1
+  playerModelRotationSpeed: 10
+  rotateToTargetTime: 0.68
+  lookSensH: 0.1
+  lookSensV: 0.1
   lookLimitV: 70
 --- !u!114 &6818342666473260924
 MonoBehaviour:

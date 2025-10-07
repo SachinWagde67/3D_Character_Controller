@@ -120,6 +120,24 @@ namespace FinalCharacterController
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""9de57f7a-bd02-4081-832e-00d1bdbf99a4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleWalk"",
+                    ""type"": ""Button"",
+                    ""id"": ""d8872f9c-8489-4b1f-96d7-4044e183fa3d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -210,6 +228,28 @@ namespace FinalCharacterController
                     ""action"": ""ToggleSprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c5fc1ff-c3b4-4d8c-b4b7-e1e0c1b6d204"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9fef1135-c198-4a48-a639-0dc1b0488cb0"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleWalk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -221,6 +261,8 @@ namespace FinalCharacterController
             m_PlayerLocomotionMap_Movement = m_PlayerLocomotionMap.FindAction("Movement", throwIfNotFound: true);
             m_PlayerLocomotionMap_Look = m_PlayerLocomotionMap.FindAction("Look", throwIfNotFound: true);
             m_PlayerLocomotionMap_ToggleSprint = m_PlayerLocomotionMap.FindAction("ToggleSprint", throwIfNotFound: true);
+            m_PlayerLocomotionMap_Jump = m_PlayerLocomotionMap.FindAction("Jump", throwIfNotFound: true);
+            m_PlayerLocomotionMap_ToggleWalk = m_PlayerLocomotionMap.FindAction("ToggleWalk", throwIfNotFound: true);
         }
 
         ~@PlayerControls()
@@ -304,6 +346,8 @@ namespace FinalCharacterController
         private readonly InputAction m_PlayerLocomotionMap_Movement;
         private readonly InputAction m_PlayerLocomotionMap_Look;
         private readonly InputAction m_PlayerLocomotionMap_ToggleSprint;
+        private readonly InputAction m_PlayerLocomotionMap_Jump;
+        private readonly InputAction m_PlayerLocomotionMap_ToggleWalk;
         /// <summary>
         /// Provides access to input actions defined in input action map "PlayerLocomotionMap".
         /// </summary>
@@ -327,6 +371,14 @@ namespace FinalCharacterController
             /// Provides access to the underlying input action "PlayerLocomotionMap/ToggleSprint".
             /// </summary>
             public InputAction @ToggleSprint => m_Wrapper.m_PlayerLocomotionMap_ToggleSprint;
+            /// <summary>
+            /// Provides access to the underlying input action "PlayerLocomotionMap/Jump".
+            /// </summary>
+            public InputAction @Jump => m_Wrapper.m_PlayerLocomotionMap_Jump;
+            /// <summary>
+            /// Provides access to the underlying input action "PlayerLocomotionMap/ToggleWalk".
+            /// </summary>
+            public InputAction @ToggleWalk => m_Wrapper.m_PlayerLocomotionMap_ToggleWalk;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -362,6 +414,12 @@ namespace FinalCharacterController
                 @ToggleSprint.started += instance.OnToggleSprint;
                 @ToggleSprint.performed += instance.OnToggleSprint;
                 @ToggleSprint.canceled += instance.OnToggleSprint;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @ToggleWalk.started += instance.OnToggleWalk;
+                @ToggleWalk.performed += instance.OnToggleWalk;
+                @ToggleWalk.canceled += instance.OnToggleWalk;
             }
 
             /// <summary>
@@ -382,6 +440,12 @@ namespace FinalCharacterController
                 @ToggleSprint.started -= instance.OnToggleSprint;
                 @ToggleSprint.performed -= instance.OnToggleSprint;
                 @ToggleSprint.canceled -= instance.OnToggleSprint;
+                @Jump.started -= instance.OnJump;
+                @Jump.performed -= instance.OnJump;
+                @Jump.canceled -= instance.OnJump;
+                @ToggleWalk.started -= instance.OnToggleWalk;
+                @ToggleWalk.performed -= instance.OnToggleWalk;
+                @ToggleWalk.canceled -= instance.OnToggleWalk;
             }
 
             /// <summary>
@@ -443,6 +507,20 @@ namespace FinalCharacterController
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnToggleSprint(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Jump" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnJump(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "ToggleWalk" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnToggleWalk(InputAction.CallbackContext context);
         }
     }
 }

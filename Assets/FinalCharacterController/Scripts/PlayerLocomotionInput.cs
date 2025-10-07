@@ -9,8 +9,11 @@ namespace FinalCharacterController {
     public class PlayerLocomotionInput : MonoBehaviour, PlayerControls.IPlayerLocomotionMapActions {
 
         [SerializeField] private bool holdToSprint = true;
+        [SerializeField] private bool holdToWalk = true;
 
         public bool SprintToggledOn { get; private set; }
+        public bool WalkToggledOn { get; private set; }
+        public bool JumpPressed { get; private set; }
 
         public PlayerControls PlayerControls { get; private set; }
         public Vector2 MovementInput { get; private set; }
@@ -31,6 +34,10 @@ namespace FinalCharacterController {
             PlayerControls.PlayerLocomotionMap.RemoveCallbacks(this);
         }
 
+        private void LateUpdate() {
+            JumpPressed = false;
+        }
+
         public void OnMovement(InputAction.CallbackContext context) {
             MovementInput = context.ReadValue<Vector2>();
         }
@@ -46,6 +53,26 @@ namespace FinalCharacterController {
 
             } else if(context.canceled) {
                 SprintToggledOn = !holdToSprint && SprintToggledOn;
+            }
+        }
+
+        public void OnJump(InputAction.CallbackContext context) {
+
+            if(!context.performed) {
+                return;
+            }
+
+            JumpPressed = true;
+
+        }
+
+        public void OnToggleWalk(InputAction.CallbackContext context) {
+
+            if(context.performed) {
+                WalkToggledOn = holdToWalk || !WalkToggledOn;
+
+            } else if(context.canceled) {
+                WalkToggledOn = !holdToWalk && WalkToggledOn;
             }
         }
     }
