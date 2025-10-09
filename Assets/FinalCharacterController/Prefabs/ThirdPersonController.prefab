@@ -894,7 +894,7 @@ Transform:
   m_GameObject: {fileID: 1871567903580627825}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.755, z: 0}
+  m_LocalPosition: {x: 0, y: 1.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1033,7 +1033,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1961145863996333020}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521314, y: 0, z: 0, w: 0.9894004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.6, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4487,8 +4487,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3634625495583123273}
   - component: {fileID: 7083291133132305117}
-  - component: {fileID: 254331732245498698}
   - component: {fileID: 7993268215091944589}
+  - component: {fileID: 2530087566549436306}
   m_Layer: 6
   m_Name: cm
   m_TagString: Untagged
@@ -4523,33 +4523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &254331732245498698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7075832389887172179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4044717213e31446939f7bd49c896ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
-  m_LookaheadTime: 0
-  m_LookaheadSmoothing: 0
-  m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0.1
-  m_VerticalDamping: 0.1
-  m_ScreenX: 0.5
-  m_ScreenY: 0.5
-  m_DeadZoneWidth: 0
-  m_DeadZoneHeight: 0
-  m_SoftZoneWidth: 0.8
-  m_SoftZoneHeight: 0.8
-  m_BiasX: 0
-  m_BiasY: 0
-  m_CenterOnActivate: 1
 --- !u!114 &7993268215091944589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4569,11 +4542,24 @@ MonoBehaviour:
   CameraDistance: 2
   CameraCollisionFilter:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   IgnoreTag: 
   CameraRadius: 0.2
-  DampingIntoCollision: 0
+  DampingIntoCollision: 0.3
   DampingFromCollision: 2
+--- !u!114 &2530087566549436306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7075832389887172179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4c41ac9245b87c4192012080077d830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Damping: 0
 --- !u!1 &7107024113203274256
 GameObject:
   m_ObjectHideFlags: 0
@@ -5125,7 +5111,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7831405543563489516}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521314, y: 0, z: 0, w: 0.9894004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.6, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6263,6 +6249,7 @@ GameObject:
   - component: {fileID: 6818342666473260924}
   - component: {fileID: 5376857449494534111}
   - component: {fileID: 6009360439986972809}
+  - component: {fileID: 8576794523366872843}
   m_Layer: 6
   m_Name: ThirdPersonController
   m_TagString: Untagged
@@ -6362,6 +6349,7 @@ MonoBehaviour:
   jumpSpeed: 1.5
   movingThreshold: 0.01
   playerRotationThreshold: 60
+  maxVerticalVelocity: 50
   playerModelRotationSpeed: 10
   rotateToTargetTime: 0.68
   lookSensH: 0.1
@@ -6411,6 +6399,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 3927527992439220950}
   locomotionBlendSpeed: 4
+--- !u!114 &8576794523366872843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9006621695595353670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 862ff2c50586eb04ea8c60268bd6e6fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virtualCamera: {fileID: 9164428354792079121}
+  cameraZoomSpeed: 0.2
+  cameraMinZoom: 1.5
+  cameraMaxZoom: 3.5
 --- !u!1 &9010029197567133783
 GameObject:
   m_ObjectHideFlags: 0

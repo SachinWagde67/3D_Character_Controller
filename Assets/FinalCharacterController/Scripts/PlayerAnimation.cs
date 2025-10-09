@@ -24,6 +24,10 @@ namespace FinalCharacterController {
         private Vector3 currentBlendInput = Vector3.zero;
         private PlayerController playerController;
 
+        private float sprintMaxBlendValue = 1.5f;
+        private float runMaxBlenValue = 1f;
+        private float walkMaxBlendValue = 0.5f;
+
         private void Awake() {
             playerLocomotionInput = GetComponent<PlayerLocomotionInput>();
             playerState = GetComponent<PlayerState>();
@@ -44,8 +48,10 @@ namespace FinalCharacterController {
             bool isFalling = playerState.CurrentPlayerMovementState == PlayerMovementState.Falling;
             bool isGrounded = playerState.InGroundedState();
 
-            Vector2 inputTarget = isSprinting ? playerLocomotionInput.MovementInput * 1.5f :
-                                  isRunning ? playerLocomotionInput.MovementInput * 1f : playerLocomotionInput.MovementInput * 0.5f;
+            bool isRunBlendValue = isRunning || isJumping || isFalling;
+
+            Vector2 inputTarget = isSprinting ? playerLocomotionInput.MovementInput * sprintMaxBlendValue :
+                                  isRunBlendValue ? playerLocomotionInput.MovementInput * runMaxBlenValue : playerLocomotionInput.MovementInput * walkMaxBlendValue;
 
             currentBlendInput = Vector3.Lerp(currentBlendInput, inputTarget, locomotionBlendSpeed * Time.deltaTime);
 

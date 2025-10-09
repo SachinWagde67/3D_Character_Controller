@@ -24,6 +24,7 @@ namespace FinalCharacterController {
         [SerializeField] private float jumpSpeed = 1.0f;
         [SerializeField] private float movingThreshold = 0.01f;
         [SerializeField] private float playerRotationThreshold = 75f;
+        [SerializeField] private float maxVerticalVelocity = 50f;
 
         [Header("Animation Settings")]
         [SerializeField] private float playerModelRotationSpeed = 10f;
@@ -116,6 +117,10 @@ namespace FinalCharacterController {
             if(playerState.IsStateGroundedState(lastMovementState) && !isGrounded) {
                 verticalVelocity += antiBump;
             }
+
+            if(Mathf.Abs(verticalVelocity) > Mathf.Abs(maxVerticalVelocity)) {
+                verticalVelocity = -1f * Mathf.Abs(maxVerticalVelocity);
+            }
         }
 
         private void HandleHorizontalMovement() {
@@ -153,7 +158,6 @@ namespace FinalCharacterController {
 
             Vector3 normal = CharacterControllerUtils.GetNormalWithSphereCast(characterController, groundLayers);
             float angle = Vector3.Angle(normal, Vector3.up);
-            Debug.Log(angle);
             bool validAngle = angle <= characterController.slopeLimit;
 
             if(!validAngle && verticalVelocity < 0f) {

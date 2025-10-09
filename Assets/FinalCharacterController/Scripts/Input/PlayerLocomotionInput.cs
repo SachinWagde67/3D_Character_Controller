@@ -15,23 +15,29 @@ namespace FinalCharacterController {
         public bool WalkToggledOn { get; private set; }
         public bool JumpPressed { get; private set; }
 
-        public PlayerControls PlayerControls { get; private set; }
         public Vector2 MovementInput { get; private set; }
         public Vector2 LookInput { get; private set; }
 
         private void OnEnable() {
 
-            PlayerControls = new PlayerControls();
-            PlayerControls.Enable();
+            if(PlayerInputManager.Instance?.PlayerControls == null) {
+                Debug.LogError("Player Controls is not set");
+                return;
+            }
 
-            PlayerControls.PlayerLocomotionMap.Enable();
-            PlayerControls.PlayerLocomotionMap.SetCallbacks(this);
+            PlayerInputManager.Instance.PlayerControls.PlayerLocomotionMap.Enable();
+            PlayerInputManager.Instance.PlayerControls.PlayerLocomotionMap.SetCallbacks(this);
         }
 
         private void OnDisable() {
 
-            PlayerControls.PlayerLocomotionMap.Disable();
-            PlayerControls.PlayerLocomotionMap.RemoveCallbacks(this);
+            if(PlayerInputManager.Instance?.PlayerControls == null) {
+                Debug.LogError("Player Controls is not set");
+                return;
+            }
+
+            PlayerInputManager.Instance.PlayerControls.PlayerLocomotionMap.Disable();
+            PlayerInputManager.Instance.PlayerControls.PlayerLocomotionMap.RemoveCallbacks(this);
         }
 
         private void LateUpdate() {
