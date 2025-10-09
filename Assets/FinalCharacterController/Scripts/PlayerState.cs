@@ -25,10 +25,15 @@ namespace FinalCharacterController {
 
         public bool InGroundedState() {
 
-            return CurrentPlayerMovementState == PlayerMovementState.Idling ||
-                   CurrentPlayerMovementState == PlayerMovementState.Walking ||
-                   CurrentPlayerMovementState == PlayerMovementState.Running ||
-                   CurrentPlayerMovementState == PlayerMovementState.Sprinting;
+            return IsStateGroundedState(CurrentPlayerMovementState);
+        }
+
+        public bool IsStateGroundedState(PlayerMovementState playerMovementState) {
+
+            return playerMovementState == PlayerMovementState.Idling ||
+                   playerMovementState == PlayerMovementState.Walking ||
+                   playerMovementState == PlayerMovementState.Running ||
+                   playerMovementState == PlayerMovementState.Sprinting;
         }
     }
 }
