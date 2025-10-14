@@ -6345,6 +6345,7 @@ MonoBehaviour:
   sprintAcceleration: 50
   sprintSpeed: 7
   inAirAcceleration: 25
+  inAirDrag: 10
   drag: 20
   gravity: 25
   jumpSpeed: 1.5

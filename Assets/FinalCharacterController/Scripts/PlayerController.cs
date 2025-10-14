@@ -19,6 +19,7 @@ namespace FinalCharacterController {
         [SerializeField] private float sprintAcceleration = 0.5f;
         [SerializeField] private float sprintSpeed = 9f;
         [SerializeField] private float inAirAcceleration = 0.15f;
+        [SerializeField] private float inAirDrag = 5f;
         [SerializeField] private float drag = 0.1f;
         [SerializeField] private float gravity = 25f;
         [SerializeField] private float jumpSpeed = 1.0f;
@@ -75,7 +76,7 @@ namespace FinalCharacterController {
             bool isMovementInput = playerLocomotionInput.MovementInput != Vector2.zero;
             bool isMovingHorizontally = IsMovingHorizontally();
             bool isSprinting = playerLocomotionInput.SprintToggledOn && isMovingHorizontally;
-            bool isWalking = (isMovingHorizontally && !canRun) || playerLocomotionInput.WalkToggledOn;
+            bool isWalking = isMovingHorizontally && (!canRun || playerLocomotionInput.WalkToggledOn);
             bool isGrounded = IsGrounded();
 
             PlayerMovementState horizontalState = isWalking ? PlayerMovementState.Walking :
@@ -145,8 +146,9 @@ namespace FinalCharacterController {
             Vector3 movementDelta = movementDirection * horizontalAcceleration * Time.deltaTime;
             Vector3 newVelocity = characterController.velocity + movementDelta;
 
-            Vector3 currentDrag = newVelocity.normalized * drag * Time.deltaTime;
-            newVelocity = (newVelocity.magnitude > drag * Time.deltaTime) ? newVelocity - currentDrag : Vector3.zero;
+            float dragMagnitude = isGrounded ? drag : inAirDrag;
+            Vector3 currentDrag = newVelocity.normalized * dragMagnitude * Time.deltaTime;
+            newVelocity = (newVelocity.magnitude > dragMagnitude * Time.deltaTime) ? newVelocity - currentDrag : Vector3.zero;
             newVelocity = Vector3.ClampMagnitude(new Vector3(newVelocity.x, 0f, newVelocity.z), clampHorizontalMagnitude);
             newVelocity.y += verticalVelocity;
             newVelocity = !isGrounded ? HandleSteepWalls(newVelocity) : newVelocity;
